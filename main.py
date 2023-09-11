@@ -1,3 +1,5 @@
+
+import random
 def print_separator(ui_width, char='-'):
     print(char * ui_width)
 
@@ -22,3 +24,75 @@ elif underStand == "no":
     print("4. If you go over 21, you lose ('bust').")
     print("5. The dealer must hit until they have 17 or higher.")
     print("6. You can 'quit' at any time to end the game.")
+# Dictionary for a deck of cards
+deck_of_cards = {
+    'Hearts': {
+        'Ace': 1,
+        '2': 2,
+        '3': 3,
+        '4': 4,
+        '5': 5,
+        '6': 6,
+        '7': 7,
+        '8': 8,
+        '9': 9,
+        '10': 10,
+        'Jack': 10,
+        'Queen': 10,
+        'King': 10,
+    },
+    'Diamonds': {
+        'Ace': 1,
+        '2': 2,
+        '3': 3,
+        '4': 4,
+        '5': 5,
+        '6': 6,
+        '7': 7,
+        '8': 8,
+        '9': 9,
+        '10': 10,
+        'Jack': 10,
+        'Queen': 10,
+        'King': 10,
+    },
+    'Clubs': {
+        'Ace': 1,
+        '2': 2,
+        '3': 3,
+        '4': 4,
+        '5': 5,
+        '6': 6,
+        '7': 7,
+        '8': 8,
+        '9': 9,
+        '10': 10,
+        'Jack': 10,
+        'Queen': 10,
+        'King': 10,
+    },
+    'Spades': {
+        'Ace': 1,
+        '2': 2,
+        '3': 3,
+        '4': 4,
+        '5': 5,
+        '6': 6,
+        '7': 7,
+        '8': 8,
+        '9': 9,
+        '10': 10,
+        'Jack': 10,
+        'Queen': 10,
+        'King': 10,
+    }
+}
+def ur_deck():
+    player_deck = random.deck_of_cards
+    print(player_deck)
+    conti_nue = input("Do you want to add more cards? (hit or stand) > ")
+    if conti_nue == "hit" :
+        update_player_deck = player_deck + random.deck_of_cards
+
+
+print(ur_deck())
