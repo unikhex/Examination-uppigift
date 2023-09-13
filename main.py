@@ -24,75 +24,17 @@ elif underStand == "no":
     print("4. If you go over 21, you lose ('bust').")
     print("5. The dealer must hit until they have 17 or higher.")
     print("6. You can 'quit' at any time to end the game.")
-# Dictionary for a deck of cards
-deck_of_cards = {
-    'Hearts': {
-        'Ace': 1,
-        '2': 2,
-        '3': 3,
-        '4': 4,
-        '5': 5,
-        '6': 6,
-        '7': 7,
-        '8': 8,
-        '9': 9,
-        '10': 10,
-        'Jack': 10,
-        'Queen': 10,
-        'King': 10,
-    },
-    'Diamonds': {
-        'Ace': 1,
-        '2': 2,
-        '3': 3,
-        '4': 4,
-        '5': 5,
-        '6': 6,
-        '7': 7,
-        '8': 8,
-        '9': 9,
-        '10': 10,
-        'Jack': 10,
-        'Queen': 10,
-        'King': 10,
-    },
-    'Clubs': {
-        'Ace': 1,
-        '2': 2,
-        '3': 3,
-        '4': 4,
-        '5': 5,
-        '6': 6,
-        '7': 7,
-        '8': 8,
-        '9': 9,
-        '10': 10,
-        'Jack': 10,
-        'Queen': 10,
-        'King': 10,
-    },
-    'Spades': {
-        'Ace': 1,
-        '2': 2,
-        '3': 3,
-        '4': 4,
-        '5': 5,
-        '6': 6,
-        '7': 7,
-        '8': 8,
-        '9': 9,
-        '10': 10,
-        'Jack': 10,
-        'Queen': 10,
-        'King': 10,
-    }
-}
-def ur_deck():
-    player_deck = random.deck_of_cards
-    print(player_deck)
-    conti_nue = input("Do you want to add more cards? (hit or stand) > ")
-    if conti_nue == "hit" :
-        update_player_deck = player_deck + random.deck_of_cards
 
+# Define the deck of cards
+suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace']
+values = {'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7, 'Eight': 8, 'Nine': 9, 'Ten': 10,
+          'Jack': 10, 'Queen': 10, 'King': 10, 'Ace': 11}
 
-print(ur_deck())
+# Function to create a new deck
+def create_deck():
+    deck = [{'rank': rank, 'suit': suit} for rank in ranks for suit in suits]
+    random.shuffle(deck)
+    return deck
+
+print(create_deck())
