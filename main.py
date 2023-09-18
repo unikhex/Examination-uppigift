@@ -15,7 +15,7 @@ print_separator(ui_width)
 
 underStand = input("Do you know the rules of playing Twenty One?(yes/no) ").lower()
 if underStand == "yes":
-    print("Tha is great. We will now continue") #Have a fuction here that continues to the game.
+    print("That is great. We will now continue") #Have a fuction here that continues to the game.
 elif underStand == "no":
     print("\nRules of Twenty One:")
     print("1. The goal is to beat the dealer without going over 21.")
@@ -38,4 +38,19 @@ def create_deck():
     random.shuffle(deck)
     return deck
 
-print(create_deck())
+initial_deck = create_deck
+
+def draw_card():
+    print("Hello")
+
+"""
+Create a class for hit or staying
+"""
+
+
+print("Here is your hand", initial_deck )
+cont_nue = input("Do you wish to hit/ stay > ").lower()
+if cont_nue == "hit":
+    print("Here is one more" + initial_deck + create_deck)
+elif cont_nue == "stay":
+    print("Okay we will stay here", initial_deck)    
