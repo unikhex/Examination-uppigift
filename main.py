@@ -40,8 +40,17 @@ def create_deck():
 
 initial_deck = create_deck
 
-def draw_card():
-    print("Hello")
+def draw_card(deck):
+    return deck.pop()
+
+
+def calculate_hand_value(hand):
+    total_value = sum(values[card['rank']] for card in hand)
+    num_aces = sum(1 for card in hand if card['rank'] == 'Ace')
+    while total_value > 21 and num_aces > 0:
+        total_value -=10
+        num_aces -= 1
+        return total_value
 
 """
 Create a class for hit or staying
