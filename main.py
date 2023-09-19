@@ -16,7 +16,7 @@ class Twentyone:
         self.player_hand = [self.draw_card(), self.draw_card()]
 
     def print_separator(self, char='-'):
-        print(self * self.ui_width)
+        print(char * self.ui_width)
 
     def print_centered_text(self, text, char='-'):
         formatted_text = f'{char} {text} {char}'
@@ -31,7 +31,7 @@ class Twentyone:
     def draw_card(self):
         return self.initial_deck.pop()
     
-    def calculate_hand_value(self,hand): #Forgot to add the self here. created a bug
+    def calculate_hand_value(self,hand): #Forgot to add the self here. created a bugs
         total_value = sum(self.values[card['rank']] for card in hand)
         num_aces = sum(1 for card in hand if card['rank'] == 'Ace')
         while total_value > 21 and num_aces > 0:
@@ -44,9 +44,7 @@ class Twentyone:
         self.print_separator
     
         underStand = input("Do you know the rules of playing Twenty One?(yes/no) ").lower()
-        if underStand == "yes":
-            print("That is great. We will now continue") #Have a fuction here that continues to the game.
-        elif underStand == "no":
+        if underStand == "no":
             print("\nRules of Twenty One:")
             print("1. The goal is to beat the dealer without going over 21.")
             print("2. You can 'hit' to draw more cards or 'stand' to keep your current total.")
@@ -56,15 +54,15 @@ class Twentyone:
             print("6. If the dealer and you have the same value at the end, the dealer wins")
             print("7. You can 'quit' at any time to end the game.")
         while True:
-            print("Here is your hand: " )
+            print("\nHere is your hand: " )
             for card in self.player_hand:
                 print(f"{card['rank']} of {card['suit']}")
-            print("\n Delaer's hand:")
+            print("\n Dealer's hand:")
             print(f"{self.dealer_hand[0]['rank']} of {self.dealer_hand[0]['suit']}")
             print("One card face down")#might not need this just want the player to know ho many rounds it has been
             
             while True:
-                choice = input("Do you want to hit oe stay > ").lower()
+                choice = input("Do you want to hit or stay > ").lower()
                 if choice == 'hit':
                     new_card = self.draw_card()
                     self.player_hand.append(new_card)
@@ -104,7 +102,7 @@ class Twentyone:
 
             print("Player's hand value:", player_value)
             print("Dealer's hand value:", dealer_value)
-
+            return
 if __name__ == "__main__":
     game = Twentyone()
     game.play()
