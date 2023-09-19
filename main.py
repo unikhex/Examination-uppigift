@@ -30,15 +30,15 @@ elif underStand == "no":
 suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
 ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace']
 values = {'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7, 'Eight': 8, 'Nine': 9, 'Ten': 10,
-          'Jack': 10, 'Queen': 10, 'King': 10, 'Ace': 11}
+          'Jack': 10, 'Queen': 10, 'King': 10, 'Ace': 11,
+          '2': 2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10
+          }
 
 # Function to create a new deck
 def create_deck():
     deck = [{'rank': rank, 'suit': suit} for rank in ranks for suit in suits]
     random.shuffle(deck)
     return deck
-
-initial_deck = create_deck
 
 def draw_card(deck):
     return deck.pop()
@@ -50,16 +50,67 @@ def calculate_hand_value(hand):
     while total_value > 21 and num_aces > 0:
         total_value -=10
         num_aces -= 1
-        return total_value
+    return total_value
+
+
+initial_deck = create_deck()
+
+player_hand = [draw_card(initial_deck), draw_card(initial_deck)]
+
+dealer_hand = [draw_card(initial_deck), draw_card(initial_deck)]
 
 """
 Create a class for hit or staying
 """
 
 
-print("Here is your hand", initial_deck )
-cont_nue = input("Do you wish to hit/ stay > ").lower()
-if cont_nue == "hit":
-    print("Here is one more" + initial_deck + create_deck)
-elif cont_nue == "stay":
-    print("Okay we will stay here", initial_deck)    
+print("Here is your hand: " )
+for card in player_hand:
+    print(f"{card['rank']} of {card['suit']}")
+
+
+print("\n Delaer's hand:")
+print(f"{dealer_hand[0]['rank']} of {dealer_hand[0]['suit']}")
+print("One card face down") #might not need this just want the player to know ho many rounds it has been
+
+
+while True:
+    choice = input("Do you want to hit oe stay > ").lower()
+    if choice == 'hit':
+        new_card = draw_card(initial_deck)
+        player_hand.append(new_card)
+        print("\n Here is your hand")
+    for card in player_hand:
+        print (f"{card['rank']} of {card['suit']}")
+    if calculate_hand_value(player_hand) > 21:
+        print("Your hand value is over 21. You lose")
+        break
+    elif choice == 'stay':
+        break
+    else:
+        print("Invalid choice. Please enter (hit) or (stay)")
+
+while calculate_hand_value(dealer_hand) < 17:
+    dealer_hand.append(draw_card(initial_deck))
+
+print("\nDealer's hand:")
+for card in dealer_hand:
+    print(f"{card['rank']} of {card['suit']}")
+
+
+player_value = calculate_hand_value(player_hand)
+dealer_value = calculate_hand_value(dealer_hand)
+
+if player_value > 21:
+    print("\nDealer wins. Player busts.")
+elif dealer_value > 21:
+    print("\nPlayer wins. Dealer busts.")
+elif player_value > dealer_value:
+    print("\nPlayer wins.")
+elif dealer_value > player_value:
+    print("\nDealer wins.")
+else:
+    print("\nIt's a tie! Dealer wins.")
+
+print("Player's hand value:", player_value)
+print("Dealer's hand value:", dealer_value)
