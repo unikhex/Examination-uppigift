@@ -32,7 +32,7 @@ Markdown
 
 The code has a class for the deck of cards and has functions that give the player and the dealer their initial cards and add cards if they decide to hit. There is also a function that removes cards that have been given out from the deck. Lastly a function that calculates the values of the dealer's and the player's hand, then ends by decideing who is the winner.
 
-## *To IMprove*
+## *To Improve*
 
  I could imprive the code currently by having a better ui for the player.
 
@@ -46,5 +46,5 @@ The code has a class for the deck of cards and has functions that give the playe
 
 Zion Awino (unikhex )
 
-- [Email] (<awinozion85@gmail.com>)
-- [Project_link] (<https://github.com/unikhex/Examination-uppigift>)
+- [Email](<awinozion85@gmail.com>)
+- [Project_link](<https://github.com/unikhex/Examination-uppigift>)
