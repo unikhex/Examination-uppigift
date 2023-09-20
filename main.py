@@ -100,7 +100,7 @@ class Twentyone:
                         Calculates the value of the hand
                         """
                         print("Your hand value is over 21. You lose")
-                    return # This was better than break in this situation as it allowed the player to continue with the game
+                    break # This was better than return in this situation as it allowed the player to continue with the game.
                 elif choice == 'stay':
                     """
                     Player stops playing. Goes to the dealers turn until the end of the game.
