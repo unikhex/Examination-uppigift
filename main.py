@@ -2,6 +2,9 @@ import random
 
 class Twentyone:
     def __init__(self):
+        """
+        Defines the card deck. 
+        """
         self.ui_width = 50
         self.suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'] 
         self.ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace']
@@ -24,17 +27,31 @@ class Twentyone:
 
 # Function to create a new deck
     def create_deck(self):
+        """
+        Goes into self.rank and self.suit which ressults in the player getting a random first card.
+        """
         deck = [{'rank': rank, 'suit': suit} for rank in self.ranks for suit in self.suits]
         random.shuffle(deck)
         return deck
     
     def draw_card(self):
+        """
+        This is a function that removes the initial card gotten from the deck.
+        Thus allowing a more realistic play.
+        """
         return self.initial_deck.pop()
     
-    def calculate_hand_value(self,hand): #Forgot to add the self here. created a bugs
+    def calculate_hand_value(self,hand):
+        """
+        It checks the value of the player's hand and the dealers hand by going into self.value array and
+        cross checks the value with the value's rank. Then it adds them
+        """
         total_value = sum(self.values[card['rank']] for card in hand)
         num_aces = sum(1 for card in hand if card['rank'] == 'Ace')
-        while total_value > 21 and num_aces > 0:
+        while total_value > 21 and num_aces > 0: 
+            """
+            Automatically checks value of a hand and if you currently have an ace or more than one ace and subtracts their value if neccesssary.
+            """
             total_value -=10
             num_aces -= 1
         return total_value
@@ -56,29 +73,48 @@ class Twentyone:
         while True:
             print("\nHere is your hand: " )
             for card in self.player_hand:
+                """
+                Prints the value and rank of the cards in your hand
+                """
                 print(f"{card['rank']} of {card['suit']}")
             print("\n Dealer's hand:")
             print(f"{self.dealer_hand[0]['rank']} of {self.dealer_hand[0]['suit']}")
-            print("One card face down")#might not need this just want the player to know ho many rounds it has been
+            # prints only one card in the dealer's hand. Maintain the suspense.
+            print("One card face down")
             
             while True:
                 choice = input("Do you want to hit or stay > ").lower()
                 if choice == 'hit':
+                    """
+                    If the input is hit. it randomily generate a new card using drawcard function.
+                    Then it proceeds to append the value of that card to the player's current hand.
+                    """
                     new_card = self.draw_card()
                     self.player_hand.append(new_card)
+                    
                     print("\n Here is your hand")
                     for card in self.player_hand:
                         print (f"{card['rank']} of {card['suit']}")
                     if self.calculate_hand_value(self.player_hand) > 21:
+                        """
+                        Calculates the value of the hand
+                        """
                         print("Your hand value is over 21. You lose")
-                    return # This was better than break in this situation
+                    return # This was better than break in this situation as it allowed the player to continue with the game
                 elif choice == 'stay':
+                    """
+                    Player stops playing. Goes to the dealers turn until the end of the game.
+                    """
                     break
                 
                 else:
                     print("Invalid choice. Please enter (hit) or (stay)")
 
             while self.calculate_hand_value(self.dealer_hand) < 17:
+                """
+                As per the rules, the dealer will continue drawing cards if their deck is below a value of 17.
+                The value is then added to the dealer's hand
+                """
                 self.dealer_hand.append(self.draw_card())
 
             print("\nDealer's hand:")
@@ -90,9 +126,9 @@ class Twentyone:
             dealer_value = self.calculate_hand_value(self.dealer_hand)
 
             if player_value > 21:
-                print("\nDealer wins. Player busts.")
+                print("\nDealer wins.")
             elif dealer_value > 21:
-                print("\nPlayer wins. Dealer busts.")
+                print("\nPlayer wins.")
             elif player_value > dealer_value:
                 print("\nPlayer wins.")
             elif dealer_value > player_value:
