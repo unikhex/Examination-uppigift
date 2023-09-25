@@ -10,7 +10,7 @@ class Twentyone:
         self.ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace']
         self.values = {
             'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7, 'Eight': 8, 'Nine': 9, 'Ten': 10,
-          'Jack': 10, 'Queen': 10, 'King': 10, 'Ace': 11,
+          'Jack': 10, 'Queen': 11, 'King': 12, 'Ace': 14,
           '2': 2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10
           }
         
@@ -52,7 +52,7 @@ class Twentyone:
             """
             Automatically checks value of a hand and if you currently have an ace or more than one ace and subtracts their value if neccesssary.
             """
-            total_value -=10
+            total_value -=14
             num_aces -= 1
         return total_value
     def play(self):
@@ -132,7 +132,13 @@ class Twentyone:
             elif player_value > dealer_value:
                 print("\nPlayer wins.")
             elif dealer_value > player_value:
+                """
+                This brings up an error if the value of both the player and the dealer are bigger than 21.
+                And if the dealer value is bigger than the player, it shows that the dealer wins.
+                """
                 print("\nDealer wins.")
+            elif dealer_value and player_value > 21:
+                print("Both lost. it's a bust")
             else:
                 print("\nIt's a tie! Dealer wins.")
 
